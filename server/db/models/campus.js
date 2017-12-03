@@ -1,6 +1,6 @@
 'use strict'
 
-const db = require('../index.js')
+const db = require('../index')
 const Sequelize = db.Sequelize;
 
 

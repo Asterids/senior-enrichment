@@ -1,13 +1,15 @@
 const router = require('express').Router();
-const Campus = require('../db/models'.Campus);
+const models = require('../db/models');
+const Campus = models.Campus;
 
-router.get('/campuses/:campusId', (req, res, next) => {
-  Campus.findById({req.params.campusId})
+
+router.get('/:campusId', (req, res, next) => {
+  Campus.findById(req.params.campusId)
     .then(campus => res.json(campus))
     .catch(next);
 })
 
-router.put('/campus/:campusId', (req, res, next) => {
+router.put('/:campusId', (req, res, next) => {
   // req.campus.update(req.body)
   //   .then(campus => res.status(200).json(campus))
   //   .catch(next);
@@ -21,7 +23,7 @@ router.put('/campus/:campusId', (req, res, next) => {
     .catch(next);
 })
 
-router.delete('/campuses/:campusId', (req, res, next) => {
+router.delete('/:campusId', (req, res, next) => {
   Campus.destroy({where: {
     id: req.params.campusId
   }})
@@ -31,7 +33,7 @@ router.delete('/campuses/:campusId', (req, res, next) => {
     .catch(next);
 })
 
-router.post('/campuses', (req, res, next) => {
+router.post('/', (req, res, next) => {
   var newCampus = Campus.build(req.body);
   newCampus.save()
     .then(savedCampus => {
@@ -40,8 +42,11 @@ router.post('/campuses', (req, res, next) => {
     .catch(next);
 })
 
-router.get('/campuses', (req, res, next) => {
+router.get('/', (req, res, next) => {
+  console.log("Campus page here");
   Campus.findAll()
     .then(campuses => res.json(campuses))
     .catch(next);
 })
+
+module.exports = router;

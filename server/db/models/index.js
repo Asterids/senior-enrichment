@@ -14,6 +14,6 @@ Student.belongsTo(Campus, {foreignKey: 'campus_id'}); // adds a "campusId" to th
 Campus.hasMany(Student, {foreignKey: 'campus_id'}); // adds a "campusId" column to Student model, also campus.getStudents() method
 
 module.exports = {
-  Student,
-  Campus
+  Student: Student,
+  Campus: Campus
 }
