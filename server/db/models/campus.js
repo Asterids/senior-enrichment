@@ -13,7 +13,7 @@ const Campus = db.define('campus', {
     type: Sequelize.STRING,
     defaultValue: 'Some URL' // which default URL ??
   },
-  description: Sequelize.TEXT;
+  description: Sequelize.TEXT
 });
 
 

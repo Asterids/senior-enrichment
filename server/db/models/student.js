@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../index.js');
-const Sequelize = db.Sequelize;
+const Sequelize = require('sequelize');
 
 
 const Student = db.define('student', {
@@ -14,13 +14,16 @@ const Student = db.define('student', {
     allowNull: false
   },
   email: {
-    // type: Sequelize.STRING  ??
-    // how to validate email address?
-    allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true
+    }
   },
   gpa: {
     type: Sequelize.FLOAT
-    // constrain to have only one decimal place
+    // constrain to have only one decimal place?
   },
   name: {
     type: Sequelize.VIRTUAL,
