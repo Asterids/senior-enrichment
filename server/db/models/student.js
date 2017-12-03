@@ -31,8 +31,22 @@ const Student = db.define('student', {
       return this.firstName + ' ' + this.lastName;
     }
   }
+  // , {
+  //   defaultScope: {
+  //     attributes: {
+  //       include: ['campusId'],
+  //     }
+  //   },
+  //   scopes: {
+  //     populated: () => {
+  //       include: [{
+  //         model: db.model('campus')
+  //       }]
+  //     }
+  //   }
+  // }
 });
 
-// Must be assigned to a campus.
+// Must be assigned to a campus - some way, somehow
 
 module.exports = Student;

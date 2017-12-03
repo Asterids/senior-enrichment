@@ -21,10 +21,7 @@ app.use('/api', require('./api')); // include our routes!
 
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
-  // var err = new Error("Sorry, the page you requested was not found.");
-  // err.status = 404;
-  // next(err);
-}); // Send index.html for any other requests - NO, send '404' status instead! (not found)
+}); // Send index.html for any other requests
 
 //error handling middleware
 app.use((err, req, res, next) => {
