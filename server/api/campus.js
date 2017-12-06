@@ -10,10 +10,7 @@ router.get('/:campusId', (req, res, next) => {
 })
 
 router.put('/:campusId', (req, res, next) => {
-  // req.campus.update(req.body)
-  //   .then(campus => res.status(200).json(campus))
-  //   .catch(next);
-  Campus.findById(req.params.id)
+  Campus.findById(req.params.campusId)
     .then(foundCampus => {
       return foundCampus.update(req.body)
     })
@@ -43,7 +40,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  console.log("Campus page here");
+  console.log('Campus page here');
   Campus.findAll()
     .then(campuses => res.json(campuses))
     .catch(next);

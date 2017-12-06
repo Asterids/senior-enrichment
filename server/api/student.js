@@ -9,10 +9,7 @@ router.get('/:studentId', (req, res, next) => {
 })
 
 router.put('/:studentId', (req, res, next) => {
-  //req.student.update(req.body)
-  //  .then(student => res.status(200).json(student))
-  //  .catch(next);
-  Student.findById(req.params.id)
+  Student.findById(req.params.studentId)
     .then(foundStudent => {
       return foundStudent.update(req.body)
     })
@@ -42,7 +39,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  console.log("Students page here");
+  console.log('Students page here');
   Student.findAll()
     .then(students => res.json(students))
     .catch(next);

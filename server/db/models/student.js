@@ -1,10 +1,10 @@
 'use strict'
 
-const db = require('../index');
+const db = require('../db');
 const Sequelize = require('sequelize');
 
 
-const Student = db.define('student', {
+module.exports = db.define('student', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -48,5 +48,3 @@ const Student = db.define('student', {
 });
 
 // Must be assigned to a campus - some way, somehow
-
-module.exports = Student;
