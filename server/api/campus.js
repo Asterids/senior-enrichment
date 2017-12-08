@@ -40,7 +40,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  console.log('Campus page here');
   Campus.findAll()
     .then(campuses => res.json(campuses))
     .catch(next);
