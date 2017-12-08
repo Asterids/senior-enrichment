@@ -5,7 +5,7 @@ export default class SingleStudent extends Component {
   constructor(props) {
     super(props)
 
-    this.state = store.getState();
+    this.state = {}
   }
 
   // instead of interacting with the backend below, can we access a particular

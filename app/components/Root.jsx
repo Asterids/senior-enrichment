@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import store from '../store'
 import Header from './Header'
 import Navbar from './Navbar'
 import Home from './Home'
@@ -7,27 +9,32 @@ import Campuses from './Campuses'
 import Students from './Students'
 import SingleStudent from './SingleStudent'
 import SingleCampus from './SingleCampus'
+import { fetchStudents, fetchCampuses } from '../reducers'
 
-export default class Main extends Component {
-  constructor () {
-    super()
-    this.state = {}
+export class Main extends Component {
+
+  componentDidMount () {
+    const campusesThunk = fetchCampuses()
+    store.dispatch(campusesThunk)
+
+    const studentsThunk = fetchStudents();
+    store.dispatch(studentsThunk);
   }
 
   render () {
+    console.log('Props in RootComponent: ', this.props)
     return (
       <Router>
         <div>
           <Header />
           <Navbar />
           <main>
-            {/* Switch: If I hit a route that matches, stop! Only render one route. */}
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/students" component={Students} />
-              <Route path="/students/:studentId" component={SingleStudent} />
+              <Route path="/students/:studentId" component={SingleStudent} {...this.props} />
               <Route exact path="/campuses" component={Campuses} />
-              <Route path="/campuses/:campusId" component={SingleCampus} />
+              <Route path="/campuses/:campusId" component={SingleCampus} {...this.props} />
               <Redirect to="/" />
             </Switch>
           </main>
@@ -36,3 +43,12 @@ export default class Main extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    campuses: state.campuses,
+    students: state.students
+  }
+}
+
+export default connect(mapStateToProps)(Main)

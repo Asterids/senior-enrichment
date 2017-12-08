@@ -1,37 +1,27 @@
 import React, { Component } from 'react'
-import store from '../store'
+import { connect } from 'react-redux'
 
-export default class SingleCampus extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = store.getState();
-  }
-
-  componentDidMount () {
-    this.unsubscribe = store.subscribe(() => {
-      const newState = store.getState();
-      this.setState(newState);
-    })
-  }
-
-  componentWillUnmount () {
-    this.unsubscribe()
-  }
+export class SingleCampus extends Component {
 
   render () {
-    const campus = this.state.currentCampus
+    const { campuses } = this.props
 
-    const studentsAtCampus = this.state.students
+    const id = this.props.match.params.campusId
+    const campus = campuses && campuses.find(oneCampus => +oneCampus.id === +id)
+
+    const studentsAtCampusSorted = this.props.students
       .filter(student => {
       return student.campus_id === campus.id
     })
       .map(student => {
       return student.lastName + ', ' + student.firstName
     })
+      .sort((nameA, nameB) => {
+        return nameA > nameB
+      })
 
-    console.log('CAMPUS: ', campus);
-    console.log('STUDENTS: ', this.state.students);
+    // console.log('CAMPUS: ', campus);
+    // console.log('STUDENTS: ', this.state.students);
 
     return (
       <div className="campus">
@@ -43,11 +33,21 @@ export default class SingleCampus extends Component {
           {campus.description}
         </p>
         <ul>
-          {studentsAtCampus.map(student => {
-          return <li key={studentsAtCampus.indexOf(student)}>{student}</li>
+          {studentsAtCampusSorted.map(student => {
+          return <li key={studentsAtCampusSorted.indexOf(student)}>{student}</li>
         })}
         </ul>
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    campuses: state.campuses,
+    students: state.students
+  }
+}
+
+const SingleCampusContainer = connect(mapStateToProps)(SingleCampus)
+export default SingleCampusContainer

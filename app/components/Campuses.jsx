@@ -1,39 +1,17 @@
-import React, {Component} from 'react'
-// import axios from 'axios'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import store from '../store'
-// import { getCampuses } from '../reducers'
-import { fetchCampuses } from '../reducers'
 
 // *** ADD a 'Students at this campus' counter
 
-export default class Campuses extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = store.getState()
+export class Campuses extends Component {
+  constructor() {
+    super()
+    this.state = {}
   }
-
-  componentDidMount () {
-    this.unsubscribe = store.subscribe(() => { // when store.subscribe runs, the local
-      this.setState(store.getState()) // state will be updated with the latest from the store
-    })
-    const campusesThunk = fetchCampuses()
-    store.dispatch(campusesThunk)
-    // axios.get('/api/campuses')
-    // .then(res => res.data)
-    // .then(campuses => {
-    //   const campusesReceived = getCampuses(campuses) // invoking our getCampuses action creator
-    //   store.dispatch(campusesReceived) // this will cause our store to invoke its reducer with our current state
-    // }) // this is how we update our state! also invokes any actions that have been subscribed (top of this func)
-  }  // re-renders component
-
-  componentWillUnmount () {
-    this.unsubscribe();
-  }
-
   render () {
-    const campuses = this.state.campuses;
+    const { campuses } = this.props;
+    console.log('Campuses props: ', this.props)
     return (
       <div>
         <h2>Campuses</h2>
@@ -46,3 +24,13 @@ export default class Campuses extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    campuses: state.campuses,
+    students: state.students
+  }
+}
+
+const CampusesContainer = connect(mapStateToProps)(Campuses)
+export default CampusesContainer
