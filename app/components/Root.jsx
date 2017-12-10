@@ -22,7 +22,6 @@ export class Main extends Component {
   }
 
   render () {
-    console.log('Props in RootComponent: ', this.props)
     return (
       <Router>
         <div>
@@ -32,9 +31,9 @@ export class Main extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/students" component={Students} />
-              <Route path="/students/:studentId" component={SingleStudent} {...this.props} />
+              <Route path="/students/:studentId" component={SingleStudent} />
               <Route exact path="/campuses" component={Campuses} />
-              <Route path="/campuses/:campusId" component={SingleCampus} {...this.props} />
+              <Route path="/campuses/:campusId" component={SingleCampus} />
               <Redirect to="/" />
             </Switch>
           </main>

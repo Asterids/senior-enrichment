@@ -22,13 +22,19 @@ module.exports = db.define('student', {
     }
   },
   gpa: {
-    type: Sequelize.FLOAT
-    // constrain to have only one decimal place?
+    type: Sequelize.FLOAT,
+    defaultValue: 0
   },
   name: {
     type: Sequelize.VIRTUAL,
     get() {
-      return this.firstName + ' ' + this.lastName;
+      return this.firstName + ' ' + this.lastName
+    }
+  },
+  lastNameFirst: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return this.lastName + ', ' + this.firstName;
     }
   }
   // , {

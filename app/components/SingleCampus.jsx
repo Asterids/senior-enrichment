@@ -1,40 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { alphabetizeStudents } from './Students'
 
 export class SingleCampus extends Component {
+  constructor() {
+    super()
+    this.state = {}
+  }
 
   render () {
     const { campuses } = this.props
 
     const id = this.props.match.params.campusId
     const campus = campuses && campuses.find(oneCampus => +oneCampus.id === +id)
-
-    const studentsAtCampusSorted = this.props.students
-      .filter(student => {
+    const studentsAtCampus = this.props.students.filter(student => {
       return student.campus_id === campus.id
     })
-      .map(student => {
-      return student.lastName + ', ' + student.firstName
-    })
-      .sort((nameA, nameB) => {
-        return nameA > nameB
-      })
 
-    // console.log('CAMPUS: ', campus);
-    // console.log('STUDENTS: ', this.state.students);
+    const studentsAtCampusSorted = alphabetizeStudents(studentsAtCampus)
 
     return (
       <div className="campus">
         <h2>{campus.name}</h2>
-        <hr />
-        <img src={campus.imageUrl} />
-        <hr />
+        <img className="campus-image" src={campus.imageUrl} />
         <p>
           {campus.description}
         </p>
+        <h3>Current Students:</h3>
         <ul>
           {studentsAtCampusSorted.map(student => {
-          return <li key={studentsAtCampusSorted.indexOf(student)}>{student}</li>
+          return <li key={student.id}><Link to={`/students/${student.id}`}>{student.lastNameFirst}</Link></li>
         })}
         </ul>
       </div>

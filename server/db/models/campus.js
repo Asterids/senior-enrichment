@@ -11,7 +11,8 @@ module.exports = db.define('campus', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: '../../../public/img/alternate5.jpg' // choose an img file from '../../../public'
+    allowNull: false,
+    defaultValue: 'https://cdn.bestdegreeprograms.org/wp-content/uploads/2015/02/Rhodes-College-Most-Beautiful-Campus.jpg'
   },
   description: Sequelize.TEXT
 });

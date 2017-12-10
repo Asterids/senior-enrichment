@@ -1,48 +1,55 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+// import store from '../store'
+// import { postStudent } from '../reducers'
+import AddStudent from './AddStudent'
 
 // *** ADD a 'Total enrolled students' counter
 
-export class Students extends Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
+export function alphabetizeStudents(studentsArr) {
+   for (var i = studentsArr.length - 1; i >= 0; i--){
+     for (var j = 1; j <= i; j++){
+       if (studentsArr[j - 1].lastName > studentsArr[j].lastName){
+           var swapVal = studentsArr[j - 1];
+           studentsArr[j - 1] = studentsArr[j];
+           studentsArr[j] = swapVal;
+        }
+     }
+   }
+   return studentsArr;
+}
 
-  render () {
-    const { students } = this.props
+function Students (props) {
+  const { students } = props
+  const orderedStudents = alphabetizeStudents(students)
 
-    const studentNameArray = students && students.map(student => student.lastName + ', ' + student.firstName)
-
-    const orderedStudents = studentNameArray && studentNameArray.sort((a, b) => {
-      let nameA = a.toLowerCase();
-      let nameB = b.toLowerCase();
-      return nameA > nameB;
-    })
-
-    return (
-      <div>
-        <h2>Students</h2>
-        <ul>
-          {orderedStudents && orderedStudents.map(student => {
-            return <li key={orderedStudents.indexOf(student)}><Link to={`/students/${student.id}`}>{student}</Link></li>
-          })}
-        </ul>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h2>Students</h2>
+      <AddStudent history={props.history} campuses={props.campuses} />
+      <ul>
+        {orderedStudents
+          .map(student => {
+          return <li key={student.id}><Link to={`/students/${student.id}`}>{student.lastNameFirst}</Link></li>
+        })}
+      </ul>
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
   return {
+    campuses: state.campuses,
     students: state.students
   }
 }
 
 // function mapDispatchToProps(dispatch) {
 //   return {
-//
+//     addNewStudent: function (newStudentObj) {
+//       dispatch(postStudent(newStudentObj))
+//     }
 //   }
 // }
 
