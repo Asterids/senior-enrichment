@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 export default function Header () {
     return (
       <div>
-        <h1>Welcome to Sinclair University Administration</h1>
+        <h1>Sinclair University</h1>
       </div>
     )
 }

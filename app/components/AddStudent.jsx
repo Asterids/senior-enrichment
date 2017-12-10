@@ -6,12 +6,14 @@ function AddStudent (props) {
   return (
     <div>
       <hr />
+      <h3>Add a New Student</h3>
       <form onSubmit={props.handleSubmit}>
-        <input value={props.newStudentEntry.firstName} name="firstName" placeholder="First name" onChange={props.handleChange} />
-        <input value={props.newStudentEntry.lastName} name="lastName" placeholder="Last name" onChange={props.handleChange} />
-        <input value={props.newStudentEntry.email} name="email" placeholder="E-mail" onChange={props.handleChange} />
-        <input value={props.newStudentEntry.campus_id} name="campus_id" placeholder="Campus number" onChange={props.handleChange} />
-        <button type="submit">Add New Student</button>
+        First Name: <input value={props.newStudentEntry.firstName} name="firstName" placeholder="First name" onChange={props.handleChange} />
+        <br />Last Name: <input value={props.newStudentEntry.lastName} name="lastName" placeholder="Last name" onChange={props.handleChange} />
+        <br />E-mail: <input value={props.newStudentEntry.email} name="email" placeholder="E-mail" onChange={props.handleChange} />
+        <br />Campus Assignment: <input value={props.newStudentEntry.campus_id} name="campus_id" placeholder="ID # (see below)" onChange={props.handleChange} />
+        <br /><br />
+        <button type="submit">Save New Student</button>
       </form>
       <br />
       Campus Key:

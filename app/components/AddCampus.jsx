@@ -5,10 +5,13 @@ import { writeNewCampus, postCampus } from '../reducers'
 function AddCampus (props) {
   return (
     <div>
+      <h3>Add a New Campus</h3>
       <form onSubmit={props.handleSubmit}>
-        <input value={props.newCampusEntry.name} name="name" placeholder="New campus name..." onChange={props.handleChange} />
-        <input value={props.newCampusEntry.description} name="description" placeholder="Enter a description..." onChange={props.handleChange} />
-        <button type="submit">Add New Campus</button>
+        Campus Name: <input value={props.newCampusEntry.name} name="name" placeholder="New campus name..." onChange={props.handleChange} />
+        <br /><br />
+        Campus Description: <input value={props.newCampusEntry.description} name="description" placeholder="Enter a description..." onChange={props.handleChange} />
+        <br /><br />
+        <button type="submit">Save New Campus</button>
       </form>
     </div>
   )

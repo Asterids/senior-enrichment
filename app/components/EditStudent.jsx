@@ -15,8 +15,10 @@ function EditStudent (props) {
         <br />
         E-mail: <input value={props.newStudentData} name="email" placeholder="E-mail" onChange={props.handleChange} />
         <br />
-        Campus assignment: <input value={props.newStudentData} name="campus_id" placeholder={`Currently #${props.student.campus_id}`} onChange={props.handleChange} />
+        GPA: <input value={props.newStudentData} name="gpa" placeholder="GPA" onChange={props.handleChange} />
         <br />
+        Campus assignment: <input value={props.newStudentData} name="campus_id" placeholder={`Currently #${props.student.campus_id}`} onChange={props.handleChange} />
+        <br /><br />
         <button type="submit">Submit Changes</button>
       </form>
       <br />
@@ -49,8 +51,9 @@ function mapDispatchToProps (dispatch, ownProps) {
       const firstName = evt.target.firstName.value
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
+      const gpa = evt.target.gpa.value
       const campus_id = +evt.target.campus_id.value
-      dispatch(updateStudent(ownProps.id, {firstName, lastName, email, campus_id}))
+      dispatch(updateStudent(ownProps.id, {firstName, lastName, email, gpa, campus_id}))
     }
   }
 }

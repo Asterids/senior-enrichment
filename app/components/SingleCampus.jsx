@@ -27,7 +27,7 @@ export class SingleCampus extends Component {
         <p>
           {campus.description}
         </p>
-        <h3>Current Students:</h3>
+        <h3>Current Students at this Campus:</h3>
         <ul>
           {studentsAtCampusSorted.map(student => {
           return <li key={student.id}><Link to={`/students/${student.id}`}>{student.lastNameFirst}</Link></li>
