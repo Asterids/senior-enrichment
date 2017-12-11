@@ -27,6 +27,7 @@ function Students (props) {
   return (
     <div>
       <h2>Students</h2>
+      {/* <Link to={'/newStudent'} history={props.history}><button>Add New Student</button></Link> */}
       <ul>
         {orderedStudents
           .map(student => {
@@ -47,8 +48,8 @@ function mapStateToProps(state) {
 
 // function mapDispatchToProps(dispatch) {
 //   return {
-//     addNewStudent: function (newStudentObj) {
-//       dispatch(postStudent(newStudentObj))
+//     deleteStudent: function (studentId) {
+//       dispatch(deleteStudent(studentId))
 //     }
 //   }
 // }

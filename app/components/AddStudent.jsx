@@ -11,6 +11,7 @@ function AddStudent (props) {
         First Name: <input value={props.newStudentEntry.firstName} name="firstName" placeholder="First name" onChange={props.handleChange} />
         <br />Last Name: <input value={props.newStudentEntry.lastName} name="lastName" placeholder="Last name" onChange={props.handleChange} />
         <br />E-mail: <input value={props.newStudentEntry.email} name="email" placeholder="E-mail" onChange={props.handleChange} />
+        <br />GPA: <input value={props.newStudentEntry.gpa} name="gpa" placeholder="GPA" onChange={props.handleChange} />
         <br />Campus Assignment: <input value={props.newStudentEntry.campus_id} name="campus_id" placeholder="ID # (see below)" onChange={props.handleChange} />
         <br /><br />
         <button type="submit">Save New Student</button>
@@ -46,8 +47,9 @@ function mapDispatchToProps (dispatch, ownProps) {
       const firstName = evt.target.firstName.value
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
+      const gpa = evt.target.gpa.value
       const campus_id = +evt.target.campus_id.value
-      dispatch(postStudent({firstName, lastName, email, campus_id}, ownProps.history))
+      dispatch(postStudent({firstName, lastName, email, gpa, campus_id}, ownProps.history))
       dispatch(writeNewStudent(''))
     }
   }

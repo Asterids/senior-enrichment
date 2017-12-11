@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateStudent } from '../reducers'
+// import { updateStudent } from '../reducers'
+import { writeNewStudent, updateStudentThunkCreator } from '../reducers'
 
 function EditStudent (props) {
   console.log(props);
@@ -43,8 +44,11 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch, ownProps) {
   return {
     handleChange (evt) {
-      console.log(evt.target.value)
-      console.log(ownProps.newStudentData)
+      const newStudentData = evt.target.value
+      console.log('Event target value: ', newStudentData)
+      console.log('Props.newStudentData: ', ownProps.newStudentData)
+      const action = writeNewStudent(newStudentData)
+      dispatch(action)
     },
     handleSubmit (evt) {
       evt.preventDefault();
@@ -53,7 +57,8 @@ function mapDispatchToProps (dispatch, ownProps) {
       const email = evt.target.email.value
       const gpa = evt.target.gpa.value
       const campus_id = +evt.target.campus_id.value
-      dispatch(updateStudent(ownProps.id, {firstName, lastName, email, gpa, campus_id}))
+      dispatch(updateStudentThunkCreator(ownProps.id, {firstName, lastName, email, gpa, campus_id}))
+      dispatch(writeNewStudent(''))
     }
   }
 }

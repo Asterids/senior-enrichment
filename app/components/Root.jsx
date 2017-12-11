@@ -9,6 +9,7 @@ import Campuses from './Campuses'
 import Students from './Students'
 import SingleStudent from './SingleStudent'
 import SingleCampus from './SingleCampus'
+// import AddStudent from './AddStudent'
 import { fetchStudents, fetchCampuses } from '../reducers'
 
 export class Main extends Component {
@@ -32,6 +33,7 @@ export class Main extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/students" component={Students} />
               <Route path="/students/:studentId" component={SingleStudent} />
+              {/* <Route path="/newStudent" render={() => <AddStudent history={this.props.history} campuses={this.props.campuses} />} /> */}
               <Route exact path="/campuses" component={Campuses} />
               <Route path="/campuses/:campusId" component={SingleCampus} />
               <Redirect to="/" />
@@ -43,10 +45,11 @@ export class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     campuses: state.campuses,
-    students: state.students
+    students: state.students,
+    // history: ownProps.history
   }
 }
 

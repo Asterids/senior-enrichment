@@ -59,20 +59,20 @@ export function postStudent(newStudent, history) {
         const action = getStudent(addedStudent)
         dispatch(action)
         history.push(`/students/${addedStudent.id}`)
-        .catch(console.error.bind(console))
       })
+      .catch(console.error.bind(console))
   }
 }
 
 export function updateStudentThunkCreator(id, newStudentData) {
   return function (dispatch) {
-    axios.post(`/students/${id}`, newStudentData)
+    axios.put(`/students/${id}`, newStudentData)
       .then(res => res.data)
       .then(updatedStudent => {
         const action = getStudent(updatedStudent)
         dispatch(action)
-        .catch(console.error.bind(console))
       })
+      .catch(console.error.bind(console))
   }
 }
 
