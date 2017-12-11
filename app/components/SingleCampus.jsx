@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { alphabetizeStudents } from './Students'
+import RemoveCampus from './RemoveCampus'
 
 export class SingleCampus extends Component {
   constructor() {
     super()
     this.state = {}
   }
+
+  // Perhaps SingleCampus and SingleStudent should be stateless functional components, whereas campuses and students should be stateful and passing down props...
 
   render () {
     const { campuses } = this.props
@@ -33,6 +36,8 @@ export class SingleCampus extends Component {
           return <li key={student.id}><Link to={`/students/${student.id}`}>{student.lastNameFirst}</Link></li>
         })}
         </ul>
+        <RemoveCampus id={id} history={this.props.history} />
+        <br />
       </div>
     )
   }

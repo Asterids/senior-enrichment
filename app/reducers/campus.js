@@ -2,8 +2,7 @@ import axios from 'axios'
 
 const GET_CAMPUSES = 'GET_CAMPUSES'
 const GET_CAMPUS = 'GET_CAMPUS'
-const REMOVE_CAMPUS = 'REMOVE_CAMPUS'
-// const ADD_CAMPUS = 'ADD_CAMPUS'
+const DELETE_CAMPUS = 'DELETE_CAMPUS'
 // const EDIT_CAMPUS = 'EDIT_CAMPUS'
 
 // action creators
@@ -23,19 +22,10 @@ export function getCampus (campus) {
   return action
 }
 
-//
-// export function addCampus (newCampus) {
-//   const action = {
-//     type: ADD_CAMPUS,
-//     newCampus
-//   }
-//   return action
-// }
-
-export function deleteCampus (campus) {
+export function deleteCampus (campusId) {
   const action = {
-    type: REMOVE_CAMPUS,
-    campus
+    type: DELETE_CAMPUS,
+    campusId
   }
   return action
 }
@@ -66,13 +56,14 @@ export function postCampus(newCampus, history) {
   }
 }
 
-export function removeCampus(campus) {
+export function removeCampus(campusId, history) {
   return function (dispatch) {
-    return axios.delete(`/api/campuses/${campus.id}`)
+    axios.delete(`/api/campuses/${campusId}`)
     .then(res => res.data)
     .then(deletedCampus => {
       const action = deleteCampus(deletedCampus)
       dispatch(action)
+      history.push('/campuses')
     })
     .catch(console.error.bind(console));
   }
@@ -85,15 +76,8 @@ export default function campusReducer (state = [], action) {
       return action.campuses
     case GET_CAMPUS:
       return [...state, action.campus]
-    // case ADD_CAMPUS:
-    //   return [...state, action.newCampus]
-    case REMOVE_CAMPUS:
-      const newState = [...state]
-      const campusId = action.campus.id;
-      const campusToRemoveIdx = state.findIndex(campus => campus.id === campusId
-      );
-      newState.splice(campusToRemoveIdx, 1);
-      return newState;
+    case DELETE_CAMPUS:
+      return [...state.filter(campus => +campus.id !== +action.campusId)]
     default:
       return state
   }

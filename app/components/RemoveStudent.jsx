@@ -5,6 +5,7 @@ import { removeStudent } from '../reducers'
 function RemoveStudent (props) {
   return (
     <div>
+      <h3>Remove Student</h3>
       <form onSubmit={props.handleSubmit}>
         <button type="submit">Delete Student</button>
       </form>

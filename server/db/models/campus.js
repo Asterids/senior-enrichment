@@ -3,8 +3,9 @@
 const db = require('../db')
 const Sequelize = require('sequelize');
 
+const Student = require('./student')
 
-module.exports = db.define('campus', {
+const Campus = db.define('campus', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -16,3 +17,11 @@ module.exports = db.define('campus', {
   },
   description: Sequelize.TEXT
 });
+
+Campus.beforeDestroy((instance) => {
+  return Student.destroy({where: {
+    campus_id: instance.id
+  }})
+})
+
+module.exports = Campus;
