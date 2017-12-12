@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { updateStudent } from '../reducers'
 import { writeNewStudent, updateStudentThunkCreator } from '../reducers'
 
 function EditStudent (props) {

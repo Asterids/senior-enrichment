@@ -10,8 +10,6 @@ export class SingleCampus extends Component {
     this.state = {}
   }
 
-  // Perhaps SingleCampus and SingleStudent should be stateless functional components, whereas campuses and students should be stateful and passing down props...
-
   render () {
     const { campuses } = this.props
 

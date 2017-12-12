@@ -23,18 +23,17 @@ export function alphabetizeStudents(studentsArr) {
 function Students (props) {
   const { students } = props
   const orderedStudents = alphabetizeStudents(students)
-
   return (
     <div>
       <h2>Students</h2>
-      {/* <Link to={'/newStudent'} history={props.history}><button>Add New Student</button></Link> */}
+      <Link to={'/newStudent'}><button>Add New Student</button></Link>
       <ul>
         {orderedStudents
           .map(student => {
           return <li key={student.id}><Link to={`/students/${student.id}`}>{student.lastNameFirst}</Link></li>
         })}
       </ul>
-      <AddStudent history={props.history} campuses={props.campuses} />
+      {/* <AddStudent history={props.history} campuses={props.campuses} /> */}
     </div>
   )
 }
@@ -46,13 +45,13 @@ function mapStateToProps(state) {
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     deleteStudent: function (studentId) {
-//       dispatch(deleteStudent(studentId))
-//     }
-//   }
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteStudent: function (studentId) {
+      dispatch(deleteStudent(studentId))
+    }
+  }
+}
 
 const StudentsContainer = connect(mapStateToProps)(Students)
 export default StudentsContainer

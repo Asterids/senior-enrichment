@@ -1,4 +1,4 @@
-const db = require('./db'); // passing along our database
+const db = require('./db');
 
 require('./models');
 

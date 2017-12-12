@@ -4,10 +4,6 @@ import students from './student'
 import newCampusEntry from './newCampusEntry'
 import newStudentEntry from './newStudentEntry'
 
-// action types
-// const ADD_STUDENT_TO_CAMPUS = 'ADD_STUDENT_TO_CAMPUS'
-
-
 const rootReducer = combineReducers({
   campuses,
   students,

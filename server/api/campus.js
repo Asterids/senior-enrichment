@@ -24,8 +24,8 @@ router.delete('/:campusId', (req, res, next) => {
   Campus.destroy({where: {
     id: req.params.campusId
   }})
-    .then(deletedCampus => {
-      res.status(202).json(deletedCampus)
+    .then(() => {
+      res.status(202).json(req.params.campusId)
     })
     .catch(next);
 })

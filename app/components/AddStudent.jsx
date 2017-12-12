@@ -31,7 +31,8 @@ function AddStudent (props) {
 function mapStateToProps (state, ownProps) {
   return {
     newStudentEntry: state.newStudentEntry,
-    history: ownProps.history
+    history: ownProps.history,
+    campuses: state.campuses
   }
 }
 

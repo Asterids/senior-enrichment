@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import AddCampus from './AddCampus'
 
-// *** ADD a 'Students at this campus' counter
+// *** I intend to add a 'Students at this campus' counter
 
 function Campuses (props){
     const { campuses } = props
@@ -27,14 +27,6 @@ function mapStateToProps(state) {
     students: state.students
   }
 }
-//
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     addNewCampus: function (newCampusObj) {
-//       dispatch(postCampus(newCampusObj))
-//     }
-//   }
-// }
 
 const CampusesContainer = connect(mapStateToProps)(Campuses)
 export default CampusesContainer

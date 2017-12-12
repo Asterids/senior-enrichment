@@ -60,10 +60,10 @@ export function removeCampus(campusId, history) {
   return function (dispatch) {
     axios.delete(`/api/campuses/${campusId}`)
     .then(res => res.data)
-    .then(deletedCampus => {
-      const action = deleteCampus(deletedCampus)
-      dispatch(action)
+    .then(deletedCampusId => {
       history.push('/campuses')
+      const action = deleteCampus(+deletedCampusId)
+      dispatch(action)
     })
     .catch(console.error.bind(console));
   }

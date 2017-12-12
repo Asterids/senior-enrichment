@@ -23,8 +23,8 @@ router.delete('/:studentId', (req, res, next) => {
   Student.destroy({ where: {
     id: req.params.studentId
   } })
-    .then(deletedStudent => {
-      res.status(202).json(deletedStudent)
+    .then(() => {
+      res.status(202).json(req.params.studentId)
     })
     .catch(next);
 })

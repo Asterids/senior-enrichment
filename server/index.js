@@ -26,9 +26,6 @@ app.get('*', (req, res, next) => {
 //error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  // if (res.headersSent) {  // is this necessary ?
-  //   return next(err)
-  // }
   res.status(err.status || 500).send(err.message || 'Internal server error');
 });
 
