@@ -32,6 +32,7 @@ export class SingleStudent extends Component {
         <EditStudent id={id} />
         <hr />
         <RemoveStudent id={id} history={this.props.history} />
+        <br />
       </div>
     )
   }

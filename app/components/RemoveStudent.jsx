@@ -9,6 +9,7 @@ function RemoveStudent (props) {
       <form onSubmit={props.handleSubmit}>
         <button type="submit">Delete Student</button>
       </form>
+      <br />
     </div>
   )
 }

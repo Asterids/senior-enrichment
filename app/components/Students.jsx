@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-// import store from '../store'
-// import { postStudent } from '../reducers'
-import AddStudent from './AddStudent'
 
 // *** ADD a 'Total enrolled students' counter
 
@@ -33,7 +30,7 @@ function Students (props) {
           return <li key={student.id}><Link to={`/students/${student.id}`}>{student.lastNameFirst}</Link></li>
         })}
       </ul>
-      {/* <AddStudent history={props.history} campuses={props.campuses} /> */}
+      <br />
     </div>
   )
 }
@@ -44,14 +41,14 @@ function mapStateToProps(state) {
     students: state.students
   }
 }
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteStudent: function (studentId) {
-      dispatch(deleteStudent(studentId))
-    }
-  }
-}
+//
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     deleteStudent: function (studentId) {
+//       dispatch(deleteStudent(studentId))
+//     }
+//   }
+// }
 
 const StudentsContainer = connect(mapStateToProps)(Students)
 export default StudentsContainer

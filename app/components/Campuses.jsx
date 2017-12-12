@@ -17,6 +17,7 @@ function Campuses (props){
           })}
         </ul>
         <AddCampus history={props.history} />
+        <br />
       </div>
     )
   }
